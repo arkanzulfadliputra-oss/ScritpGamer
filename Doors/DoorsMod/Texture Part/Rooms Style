@@ -1,0 +1,53 @@
+spawn(function()
+    while true do
+        wait(0.5)
+        pcall(function()
+            for _, v in pairs(workspace:GetDescendants()) do
+                if v:IsA("BasePart") and not v:IsDescendantOf(game.Players.LocalPlayer.Character) then
+                    if v.Name ~= "Seek" and v.Name ~= "Figure" and v.Name ~= "RushMoving" and v.Name ~= "AmbushMoving" and v.Name ~= "Screech" and v.Name ~= "Glitch" then
+                        if v.Position.Y < 1 then
+                            v.Material = Enum.Material.SmoothPlastic
+                            v.BrickColor = BrickColor.new("Bright blue")
+                            v.Color = Color3.new(0, 0.5, 1)
+                        else
+                            v.Material = Enum.Material.SmoothPlastic
+                            v.BrickColor = BrickColor.new("White")
+                            v.Color = Color3.new(1, 1, 1)
+                        end
+                    end
+                end
+                
+                if v.Name:find("Door") or v.Name:find("door") then
+                    if not v:FindFirstChild("RoomSign") then
+                        local sign = Instance.new("BillboardGui")
+                        sign.Name = "RoomSign"
+                        sign.Size = UDim2.new(0, 120, 0, 60)
+                        sign.StudsOffset = Vector3.new(0, 2.5, 0)
+                        sign.AlwaysOnTop = true
+                        sign.Parent = v
+                        
+                        local frame = Instance.new("Frame")
+                        frame.Size = UDim2.new(1, 0, 1, 0)
+                        frame.BackgroundColor3 = Color3.new(0, 0, 0)
+                        frame.BackgroundTransparency = 0.5
+                        frame.Parent = sign
+                        
+                        local uiStroke = Instance.new("UIStroke")
+                        uiStroke.Thickness = 3
+                        uiStroke.Color = Color3.new(1, 1, 1)
+                        uiStroke.Parent = frame
+                        
+                        local text = Instance.new("TextLabel")
+                        text.Size = UDim2.new(1, 0, 1, 0)
+                        text.BackgroundTransparency = 1
+                        text.Text = "A-000"
+                        text.TextColor3 = Color3.new(1, 1, 1)
+                        text.TextScaled = true
+                        text.Font = Enum.Font.SourceSansBold
+                        text.Parent = frame
+                    end
+                end
+            end
+        end)
+    end
+end)
